@@ -18,34 +18,51 @@
             background: #000;
         }
 
-        /* Apenas a imagem de fundo, ocupando a tela toda */
         .convite {
             width: 100vw;
             height: 100vh;
             background: url("capa.png") center / contain no-repeat;
-            /* "contain" ajusta a imagem inteira sem cortar nada */
             position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 5vh;
         }
 
-        /* Só mantém o player da música, nada mais */
+        /* Área clicável do mapa */
+        .link-mapa {
+            position: absolute;
+            top: 61%;
+            right: 9%;
+            width: 21%;
+            height: 12%;
+            cursor: pointer;
+        }
+
+        /* Área clicável do WhatsApp */
+        .link-whatsapp {
+            position: absolute;
+            bottom: 10%;
+            left: 12%;
+            width: 76%;
+            height: 10%;
+            cursor: pointer;
+        }
+
+        /* Áudio automático */
         audio {
-            width: 85%;
-            max-width: 400px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.15);
-            z-index: 2;
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
     <div class="convite">
-        <!-- Apenas a música, sem nenhum texto ou botão extra -->
-        <audio controls>
-            <source src="musica.mpeg" type="audio/mpeg">
+        <!-- Link completo para o Google Maps -->
+        <a href="https://www.google.com/maps?q=Buffet+Tik+%26+Tok+Maia,+Av.+Papa+Jo%C3%A3o+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP" target="_blank" class="link-mapa"></a>
+
+        <!-- Link completo para o seu WhatsApp -->
+        <a href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa, dia 29/07 às 19h30. Obrigado!" target="_blank" class="link-whatsapp"></a>
+
+        <!-- Música automática -->
+        <audio src="musica.mpeg" autoplay loop>
             Seu navegador não suporta reproduzir o áudio.
         
     </div>
