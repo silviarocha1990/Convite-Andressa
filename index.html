@@ -2,170 +2,52 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Convite de Aniversário - Andressa</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
-        body {
-            background: #000;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .convite {
-            max-width: 450px;
+        html, body {
             width: 100%;
-            background: url("capa.png") center / cover no-repeat;
-            border-radius: 20px;
-            padding: 40px 25px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 0 30px rgba(120, 60, 255, 0.5);
-            border: 3px solid #6a2cd9;
-            position: relative;
+            height: 100%;
             overflow: hidden;
+            background: #000;
         }
 
-        .convite::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 50, 0.4);
-            z-index: 1;
-        }
-
-        .conteudo {
+        /* Apenas a imagem de fundo, ocupando a tela toda */
+        .convite {
+            width: 100vw;
+            height: 100vh;
+            background: url("capa.png") center / contain no-repeat;
+            /* "contain" ajusta a imagem inteira sem cortar nada */
             position: relative;
-            z-index: 2;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 5vh;
         }
 
-        h2 {
-            color: #ffd700;
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-
-        .subtitulo {
-            font-size: 16px;
-            margin-bottom: 20px;
-            color: #e0e0ff;
-        }
-
-        h1 {
-            font-size: 52px;
-            font-weight: bold;
-            background: linear-gradient(90deg, #ff4488, #ffdd22, #44ddff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin: 15px 0;
-            text-shadow: 0 0 15px rgba(255, 200, 0, 0.6);
-        }
-
-        .anos {
-            font-size: 28px;
-            color: #ffd700;
-            margin-bottom: 25px;
-        }
-
-        .info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .bloco {
-            background: rgba(100, 50, 200, 0.6);
-            padding: 15px 10px;
-            border-radius: 12px;
-            border: 1px solid #8855ff;
-        }
-
-        .bloco h3 {
-            font-size: 14px;
-            color: #ffd700;
-            margin-bottom: 8px;
-        }
-
-        .bloco p {
-            font-size: 15px;
-            line-height: 1.4;
-        }
-
-        .botao {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 30px;
-            background: linear-gradient(90deg, #ff44aa, #7744ff);
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 50px;
-            font-size: 17px;
-            box-shadow: 0 0 15px rgba(255, 80, 200, 0.5);
-            transition: 0.3s;
-        }
-
-        .botao:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 80, 200, 0.7);
-        }
-
+        /* Só mantém o player da música, nada mais */
         audio {
-            margin-top: 25px;
-            width: 100%;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
+            width: 85%;
+            max-width: 400px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.15);
+            z-index: 2;
         }
     </style>
 </head>
 <body>
     <div class="convite">
-        <div class="conteudo">
-            <h2>MUNDO TORAGO</h2>
-            <p class="subtitulo">VOCÊ É NOSSO CONVIDADO<br>PARA UMA FESTA INCRÍVEL!<br>VENHA COMEMORAR</p>
-
-            <h1>Andressa</h1>
-            <div class="anos">10 anos!</div>
-            <p style="color: #e0e0ff; margin-bottom: 20px;">UMA NOITE DE ALEGRIA, DIVERSÃO E MUITAS MEMÓRIAS!</p>
-
-            <div class="info">
-                <div class="bloco">
-                    <h3>📅 DIA</h3>
-                    <p>29/07/2026<br>QUARTA-FEIRA</p>
-                </div>
-                <div class="bloco">
-                    <h3>⏰ HORÁRIO</h3>
-                    <p>19:30hs</p>
-                </div>
-                <div class="bloco">
-                    <h3>📍 LOCAL</h3>
-                    <p>Buffet Tik & Tok Maia<br>Av. Papa João XXIII, 64<br>Parque Renato Maia<br>Guarulhos - SP, 07114-100</p>
-                </div>
-                <div class="bloco">
-                    <h3>🗺️ COMO CHEGAR</h3>
-                    <p><a href="https://www.google.com/maps/search/?api=1&query=Buffet+Tik+%26+Tok+Maia+-+Av.+Papa+Jo%C3%A3o+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP" target="_blank" style="color: #ffd700; text-decoration: none;">CLIQUE E VEJA O MAPA!</a></p>
-                </div>
-            </div>
-
-            <a href="#" class="botao">💖 CONFIRMAR PRESENÇA</a>
-
-            <!-- Áudio -->
-            <audio controls>
-                <source src="musica.mpeg" type="audio/mpeg">
-                Seu navegador não suporta áudio.
-            
-        </div>
+        <!-- Apenas a música, sem nenhum texto ou botão extra -->
+        <audio controls>
+            <source src="musica.mpeg" type="audio/mpeg">
+            Seu navegador não suporta reproduzir o áudio.
+        
     </div>
 </body>
 </html>
