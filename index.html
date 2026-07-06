@@ -18,6 +18,7 @@
             background: #000;
         }
 
+        /* Imagem ocupando toda a tela sem cortes */
         .convite {
             width: 100vw;
             height: 100vh;
@@ -25,45 +26,59 @@
             position: relative;
         }
 
-        /* Área clicável do mapa */
+        /* Área do botão "Como chegar" → Google Maps */
         .link-mapa {
             position: absolute;
-            top: 61%;
-            right: 9%;
-            width: 21%;
-            height: 12%;
+            top: 63%;
+            right: 8%;
+            width: 20%;
+            height: 11%;
             cursor: pointer;
         }
 
-        /* Área clicável do WhatsApp */
+        /* Área do botão "Confirmar Presença" → WhatsApp */
         .link-whatsapp {
             position: absolute;
-            bottom: 10%;
-            left: 12%;
-            width: 76%;
-            height: 10%;
+            bottom: 12%;
+            left: 13%;
+            width: 74%;
+            height: 9%;
             cursor: pointer;
         }
 
-        /* Áudio automático */
-        audio {
+        /* Áudio visível inicialmente para funcionar em todos os celulares */
+        .audio-player {
             position: absolute;
-            opacity: 0;
-            pointer-events: none;
+            bottom: 2%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 350px;
+            z-index: 10;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.6);
         }
     </style>
 </head>
 <body>
     <div class="convite">
-        <!-- Link completo para o Google Maps -->
-        <a href="https://www.google.com/maps?q=Buffet+Tik+%26+Tok+Maia,+Av.+Papa+Jo%C3%A3o+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP" target="_blank" class="link-mapa"></a>
+        <!-- Link para o Google Maps do Buffet -->
+        <a 
+            href="https://www.google.com/maps?q=Buffet+Tik+%26+Tok+Maia,+Av.+Papa+Jo%C3%A3o+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP,+07114-100" 
+            target="_blank" 
+            class="link-mapa"
+        ></a>
 
-        <!-- Link completo para o seu WhatsApp -->
-        <a href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa, dia 29/07 às 19h30. Obrigado!" target="_blank" class="link-whatsapp"></a>
+        <!-- Link do WhatsApp com mensagem atualizada -->
+        <a 
+            href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa dia 29/07 às 19h30. 🎉%0A%0APor favor, informe:%0A✅ Nome do convidado:%0A✅ Se for criança, qual a idade:" 
+            target="_blank" 
+            class="link-whatsapp"
+        ></a>
 
-        <!-- Música automática -->
-        <audio src="musica.mpeg" autoplay loop>
-            Seu navegador não suporta reproduzir o áudio.
+        <!-- Música ajustada para funcionar em todos os navegadores -->
+        <audio src="musica.mpeg" controls loop class="audio-player">
+            Seu navegador não suporta reproduzir áudio.
         
     </div>
 </body>
