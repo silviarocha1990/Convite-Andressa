@@ -29,10 +29,9 @@
             class="link-whatsapp"
         ></a>
 
-        <!-- Música com o nome correto mundo.mp3 -->
+        <!-- Música com o nome correto: festa.mp3 -->
         <audio id="musica" loop preload="auto">
-            <source src="mundo.mp3" type="audio/mpeg">
-            <source src="musica.mpeg" type="audio/mpeg">
+            <source src="festa.mp3" type="audio/mpeg">
         
     </div>
 
@@ -40,7 +39,6 @@
         let tocou = false;
         const tela = document.getElementById("telaConvite");
 
-        // Funciona para clique no computador e toque no celular
         tela.addEventListener("click", tocarMusica);
         tela.addEventListener("touchstart", tocarMusica);
 
@@ -49,7 +47,7 @@
                 const audio = document.getElementById("musica");
                 audio.play()
                     .then(() => { tocou = true; })
-                    .catch(erro => console.log("Aguardando interação:", erro));
+                    .catch(erro => console.log("Erro ao carregar áudio:", erro));
             }
         }
     </script>
