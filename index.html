@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Convite de Aniversário - Andressa</title>
+    <title>Convite • Aniversário da Andressa</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
         html, body {
@@ -18,14 +19,16 @@
             background: #000;
         }
 
+        /* Fundo principal com efeito suave */
         .convite {
             width: 100vw;
             height: 100vh;
             background: url("capa.png") center / contain no-repeat;
             position: relative;
+            transition: all 0.4s ease;
         }
 
-        /* Botão Como chegar */
+        /* Botão Como Chegar com estilo */
         .link-mapa {
             position: absolute;
             top: 58%;
@@ -34,9 +37,19 @@
             height: 10%;
             cursor: pointer;
             z-index: 999;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
         }
 
-        /* Botão Confirmar Presença */
+        .link-mapa:hover {
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 0 25px rgba(255,255,255,0.25);
+            transform: scale(1.03);
+        }
+
+        /* Botão Confirmar Presença com estilo */
         .link-whatsapp {
             position: absolute;
             bottom: 13%;
@@ -45,9 +58,19 @@
             height: 9%;
             cursor: pointer;
             z-index: 999;
+            border-radius: 8px;
+            background: rgba(37, 211, 102, 0.08);
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.15);
+            transition: all 0.3s ease;
         }
 
-        /* Música totalmente fora da tela, sem atrapalhar cliques */
+        .link-whatsapp:hover {
+            background: rgba(37, 211, 102, 0.18);
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.3);
+            transform: scale(1.02);
+        }
+
+        /* Música invisível e sem interferir */
         #musica {
             position: fixed;
             top: -9999px;
@@ -59,7 +82,7 @@
 </head>
 <body>
     <div class="convite">
-        <!-- Link Google Maps -->
+        <!-- Botão Como Chegar -->
         <a 
             href="https://www.google.com/maps?q=Buffet+Tik+%26+Tok+Maia,+Av.+Papa+Jo%C3%A3o+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP,+07114-100" 
             target="_blank" 
@@ -67,15 +90,15 @@
             onclick="iniciarMusica()"
         ></a>
 
-        <!-- Link WhatsApp com mensagem correta -->
+        <!-- Botão Confirmar Presença com mensagem exata -->
         <a 
-            href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa 🎉%0A%0ADia: 29/07/2026 às 19h30%0A%0A⚠️ Confirmações até o dia 20/07/2026%0A%0APor favor, informe:%0A✅ Nome completo:%0A✅ Se for criança, qual a idade:" 
+            href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa 🎉%0A%0ADia: 29/07/2026 às 19h30%0A%0A⚠️ Confirmações até o dia 20/07%0A%0APor favor, informe:%0A✅ Nome completo:%0A✅ Se for criança, qual a idade:" 
             target="_blank" 
             class="link-whatsapp"
             onclick="iniciarMusica()"
         ></a>
 
-        <!-- Música com nome correto -->
+        <!-- Arquivo de música -->
         <audio id="musica" loop preload="auto">
             <source src="festa.mp3" type="audio/mpeg">
         
@@ -89,11 +112,13 @@
             if (!tocou) {
                 audio.play()
                     .then(() => { tocou = true; })
-                    .catch(erro => console.log("Aguardando interação:", erro));
+                    .catch(() => {});
             }
         }
 
+        // Funciona em celular e computador
         document.addEventListener("touchstart", iniciarMusica);
+        document.addEventListener("click", iniciarMusica);
     </script>
 </body>
 </html>
