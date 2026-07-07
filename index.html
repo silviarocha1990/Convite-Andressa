@@ -7,10 +7,46 @@
     <style>
         * {margin:0;padding:0;box-sizing:border-box;}
         html, body {width:100%;height:100%;overflow:hidden;background:#000;}
-        .convite {width:100vw;height:100vh;background:url("capa.png") center/contain no-repeat;position:relative;}
-        .link-mapa {position:absolute;top:58%;right:7%;width:22%;height:10%;cursor:pointer;}
-        .link-whatsapp {position:absolute;bottom:13%;left:12%;width:76%;height:9%;cursor:pointer;}
-        #musica {position:absolute;opacity:0;pointer-events:none;}
+
+        /* Convite com imagem */
+        .convite {
+            width:100vw;
+            height:100vh;
+            background:url("capa.png") center/contain no-repeat;
+            position:relative;
+        }
+
+        /* Área do botão Como chegar */
+        .link-mapa {
+            position:absolute;
+            top:58%;
+            right:7%;
+            width:22%;
+            height:10%;
+            cursor:pointer;
+            z-index:10; /* Fica por cima de tudo */
+        }
+
+        /* Área do botão Confirmar Presença */
+        .link-whatsapp {
+            position:absolute;
+            bottom:13%;
+            left:12%;
+            width:76%;
+            height:9%;
+            cursor:pointer;
+            z-index:10; /* Fica por cima de tudo */
+        }
+
+        /* Música totalmente fora da área de clique */
+        #musica {
+            position:fixed;
+            top:-9999px;
+            left:-9999px;
+            opacity:0;
+            pointer-events:none;
+            z-index:1; /* Fica por baixo */
+        }
     </style>
 </head>
 <body>
@@ -22,14 +58,14 @@
             class="link-mapa"
         ></a>
 
-        <!-- Botão Confirmar Presença → WhatsApp com data limite -->
+        <!-- Botão Confirmar Presença → WhatsApp -->
         <a 
             href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa dia 29/07 às 19h30.%0A%0A⚠️ Confirmações aceitas até o dia 20/09.%0A%0APor favor, informe:%0A✅ Nome completo:%0A✅ Se for criança, qual a idade:" 
             target="_blank" 
             class="link-whatsapp"
         ></a>
 
-        <!-- Música com o nome correto: festa.mp3 -->
+        <!-- Música: festa.mp3, fora da área visível/clicável -->
         <audio id="musica" loop preload="auto">
             <source src="festa.mp3" type="audio/mpeg">
         
@@ -38,18 +74,19 @@
     <script>
         let tocou = false;
         const tela = document.getElementById("telaConvite");
+        const audio = document.getElementById("musica");
 
-        tela.addEventListener("click", tocarMusica);
-        tela.addEventListener("touchstart", tocarMusica);
-
-        function tocarMusica() {
+        // Inicia a música com o primeiro toque/clique
+        function iniciarMusica() {
             if (!tocou) {
-                const audio = document.getElementById("musica");
                 audio.play()
                     .then(() => { tocou = true; })
-                    .catch(erro => console.log("Erro ao carregar áudio:", erro));
+                    .catch(err => console.log("Aguardando interação:", err));
             }
         }
+
+        tela.addEventListener("click", iniciarMusica);
+        tela.addEventListener("touchstart", iniciarMusica);
     </script>
 </body>
 </html>
