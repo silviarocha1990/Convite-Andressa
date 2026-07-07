@@ -5,67 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Convite de Aniversário - Andressa</title>
     <style>
-        * {margin:0;padding:0;box-sizing:border-box;}
-        html, body {width:100%;height:100%;overflow:hidden;background:#000;}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* Convite com imagem */
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* Imagem do convite ocupando toda a tela sem cortes */
         .convite {
-            width:100vw;
-            height:100vh;
-            background:url("capa.png") center/contain no-repeat;
-            position:relative;
+            width: 100vw;
+            height: 100vh;
+            background: url("capa.png") center / contain no-repeat;
+            position: relative;
         }
 
-        /* Área do botão Como chegar */
+        /* Botão COMO CHEGAR — posição e prioridade de clique */
         .link-mapa {
-            position:absolute;
-            top:58%;
-            right:7%;
-            width:22%;
-            height:10%;
-            cursor:pointer;
-            z-index:10; /* Fica por cima de tudo */
+            position: absolute;
+            top: 58%;
+            right: 7%;
+            width: 22%;
+            height: 10%;
+            cursor: pointer;
+            z-index: 99; /* Sempre por cima */
         }
 
-        /* Área do botão Confirmar Presença */
+        /* Botão CONFIRMAR PRESENÇA — posição e prioridade de clique */
         .link-whatsapp {
-            position:absolute;
-            bottom:13%;
-            left:12%;
-            width:76%;
-            height:9%;
-            cursor:pointer;
-            z-index:10; /* Fica por cima de tudo */
+            position: absolute;
+            bottom: 13%;
+            left: 12%;
+            width: 76%;
+            height: 9%;
+            cursor: pointer;
+            z-index: 99; /* Sempre por cima */
         }
 
-        /* Música totalmente fora da área de clique */
+        /* Música totalmente fora da tela, não atrapalha cliques */
         #musica {
-            position:fixed;
-            top:-9999px;
-            left:-9999px;
-            opacity:0;
-            pointer-events:none;
-            z-index:1; /* Fica por baixo */
+            position: fixed;
+            top: -9999px;
+            left: -9999px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
     <div class="convite" id="telaConvite">
-        <!-- Botão Como chegar → Google Maps -->
+        <!-- Link para o Google Maps do Buffet -->
         <a 
             href="https://www.google.com/maps?q=Buffet+Tik+%26+Tok+Maia,+Av.+Papa+Jo%C3%A3o+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP,+07114-100" 
             target="_blank" 
             class="link-mapa"
         ></a>
 
-        <!-- Botão Confirmar Presença → WhatsApp -->
+        <!-- Link WhatsApp com mensagem organizada e limpa -->
         <a 
-            href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa dia 29/07 às 19h30.%0A%0A⚠️ Confirmações aceitas até o dia 20/09.%0A%0APor favor, informe:%0A✅ Nome completo:%0A✅ Se for criança, qual a idade:" 
+            href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa 🎉%0A%0ADia: 29/07/2026 às 19h30%0A%0A⚠️ Confirmações aceitas até o dia 20/09%0A%0APor favor, informe:%0A✅ Nome completo:%0A✅ Se for criança, qual a idade:" 
             target="_blank" 
             class="link-whatsapp"
         ></a>
 
-        <!-- Música: festa.mp3, fora da área visível/clicável -->
+        <!-- Música com nome correto -->
         <audio id="musica" loop preload="auto">
             <source src="festa.mp3" type="audio/mpeg">
         
@@ -73,20 +83,17 @@
 
     <script>
         let tocou = false;
-        const tela = document.getElementById("telaConvite");
         const audio = document.getElementById("musica");
 
-        // Inicia a música com o primeiro toque/clique
+        // Toca música no primeiro toque/clique
         function iniciarMusica() {
             if (!tocou) {
-                audio.play()
-                    .then(() => { tocou = true; })
-                    .catch(err => console.log("Aguardando interação:", err));
+                audio.play().then(() => { tocou = true; }).catch(() => {});
             }
         }
 
-        tela.addEventListener("click", iniciarMusica);
-        tela.addEventListener("touchstart", iniciarMusica);
+        document.addEventListener("click", iniciarMusica);
+        document.addEventListener("touchstart", iniciarMusica);
     </script>
 </body>
 </html>
