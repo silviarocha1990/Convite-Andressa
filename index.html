@@ -19,7 +19,7 @@
             background: #000;
         }
 
-        /* Fundo ajustado para caber a arte toda sem cortes */
+        /* Fundo do convite */
         .convite {
             width: 100vw;
             height: 100vh;
@@ -57,10 +57,38 @@
             to { opacity: 1; }
         }
 
-        /* Botão COMO CHEGAR - posição exata na arte */
-        .link-mapa {
+        /* 📅 Contagem Regressiva */
+        .contagem {
             position: absolute;
             top: 66%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #ffdd00;
+            z-index: 999;
+            background: rgba(0,0,0,0.65);
+            padding: 6px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 220, 0, 0.4);
+            box-shadow: 0 0 15px rgba(255, 220, 0, 0.3);
+        }
+
+        .contagem .titulo {
+            font-size: 14px;
+            margin-bottom: 3px;
+            opacity: 0.9;
+        }
+
+        .contagem .numeros {
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 12px rgba(255, 220, 0, 0.7);
+        }
+
+        /* Botão COMO CHEGAR */
+        .link-mapa {
+            position: absolute;
+            top: 57%;
             right: 4%;
             width: 22%;
             height: 9%;
@@ -77,7 +105,7 @@
             transform: scale(1.04);
         }
 
-        /* Botão CONFIRMAR PRESENÇA - posição exata na arte */
+        /* Botão CONFIRMAR PRESENÇA */
         .link-whatsapp {
             position: absolute;
             bottom: 5%;
@@ -98,7 +126,106 @@
             transform: translateX(-50%) scale(1.02);
         }
 
-        /* Música invisível, sem atrapalhar cliques */
+        /* Botão ÁLBUM DE FOTOS */
+        .botao-album {
+            position: absolute;
+            top: 78%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 65%;
+            height: 7%;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+
+        .botao-album:hover {
+            background: rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            transform: translateX(-50%) scale(1.03);
+        }
+
+        /* Janela da Galeria */
+        .galeria {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.94);
+            z-index: 2000;
+            padding: 25px 15px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .galeria.aberta {
+            display: block;
+            animation: aparecerGaleria 0.4s ease;
+        }
+
+        @keyframes aparecerGaleria {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .fechar-galeria {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            background: #ff2288;
+            border: none;
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255,34,136,0.5);
+            z-index: 2100;
+        }
+
+        .titulo-galeria {
+            text-align: center;
+            color: #ffddff;
+            font-size: 22px;
+            margin: 20px 0 25px;
+            text-shadow: 0 0 10px rgba(255,20,255,0.6);
+        }
+
+        .grade-fotos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .grade-fotos img {
+            width: 100%;
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 12px rgba(255,20,255,0.3);
+            transition: transform 0.3s ease;
+            object-fit: cover;
+            aspect-ratio: 1/1;
+        }
+
+        .grade-fotos img:hover {
+            transform: scale(1.06);
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255,215,0,0.5);
+        }
+
+        /* Música invisível */
         #musica {
             position: fixed;
             top: -9999px;
@@ -110,10 +237,16 @@
 </head>
 <body>
     <div class="convite" id="tela">
-        <!-- Aviso da música -->
         <div class="aviso-musica">🎵 Toque em qualquer lugar para ouvir a música</div>
 
-        <!-- Link para o Mapa -->
+        <!-- Contagem Regressiva -->
+        <div class="contagem">
+            <div class="titulo">FALTAM</div>
+            <div class="numeros" id="contador"></div>
+            <div class="titulo">PARA A FESTA!</div>
+        </div>
+
+        <!-- Botão Como Chegar -->
         <a 
             href="https://www.google.com/maps?q=Buffet+Tik+%26+Tok+Maia,+Av.+Papa+Jo%C3%A3o+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP,+07114-100" 
             target="_blank" 
@@ -121,13 +254,33 @@
             onclick="iniciarMusica()"
         ></a>
 
-        <!-- Link WhatsApp com mensagem exata -->
+        <!-- Botão Confirmar Presença -->
         <a 
             href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa 🎉%0A%0ADia: 29/07/2026 às 19h30%0A%0A⚠️ Confirmações até o dia 20/07%0A%0APor favor, informe:%0A✅ Nome completo:%0A✅ Se for criança, qual a idade:" 
             target="_blank" 
             class="link-whatsapp"
             onclick="iniciarMusica()"
         ></a>
+
+        <!-- Botão para abrir álbum -->
+        <button class="botao-album" onclick="abrirGaleria()">📸 Ver fotos da Andressa</button>
+
+        <!-- Galeria com as 9 fotos -->
+        <div class="galeria" id="galeriaFotos">
+            <button class="fechar-galeria" onclick="fecharGaleria()">&times;</button>
+            <h2 class="titulo-galeria">Momentos da Andressa 💖</h2>
+            <div class="grade-fotos">
+                <img src="foto1.jpg" alt="Foto 1">
+                <img src="foto2.jpg" alt="Foto 2">
+                <img src="foto3.jpg" alt="Foto 3">
+                <img src="foto4.jpg" alt="Foto 4">
+                <img src="foto5.jpg" alt="Foto 5">
+                <img src="foto6.jpg" alt="Foto 6">
+                <img src="foto7.jpg" alt="Foto 7">
+                <img src="foto8.jpg" alt="Foto 8">
+                <img src="foto9.jpg" alt="Foto 9">
+            </div>
+        </div>
 
         <!-- Música -->
         <audio id="musica" loop preload="auto">
@@ -139,22 +292,54 @@
         let tocou = false;
         const audio = document.getElementById("musica");
         const aviso = document.querySelector(".aviso-musica");
+        const galeria = document.getElementById("galeriaFotos");
 
+        // Função da contagem regressiva
+        function atualizarContagem() {
+            const dataFesta = new Date("2026-07-29T19:30:00-03:00");
+            const agora = new Date();
+            const diferenca = dataFesta - agora;
+            const elemento = document.getElementById("contador");
+
+            if (diferenca <= 0) {
+                elemento.textContent = "É HOJE! 🎉";
+                return;
+            }
+
+            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+
+            elemento.textContent = ${dias}d ${horas}h ${minutos}m;
+        }
+
+        atualizarContagem();
+        setInterval(atualizarContagem, 60000);
+
+        // Função para iniciar a música
         function iniciarMusica() {
             if (!tocou) {
                 audio.play()
                     .then(() => {
                         tocou = true;
-                        // Esconde o aviso suavemente após tocar
                         aviso.style.transition = "opacity 0.6s ease";
                         aviso.style.opacity = "0";
                         setTimeout(() => aviso.style.display = "none", 600);
                     })
-                    .catch(erro => console.log("Aguardando interação:", erro));
+                    .catch(() => {});
             }
         }
 
-        // Funciona em celular e computador
+        // Abrir e fechar galeria
+        function abrirGaleria() {
+            galeria.classList.add("aberta");
+            document.body.style.overflow = "hidden";
+        }
+
+        function fecharGaleria() {
+            galeria.classList.remove("aberta");
+        }
+
         document.addEventListener("touchstart", iniciarMusica);
         document.addEventListener("click", iniciarMusica);
     </script>
