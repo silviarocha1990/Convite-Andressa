@@ -1,4 +1,22 @@
-<!DOCTYPE html>
+[21:25, 07/07/2026] Silvia Rocha: Olá! Confirmo minha presença na festa da Andressa 🎉
+
+Dia: 29/07/2026 às 19h30
+
+⚠️ Confirmações até o dia 20/07
+
+Por favor, informe:
+✅ Nome completo:
+✅ Se for criança, qual a idade:
+[21:33, 07/07/2026] Silvia Rocha: Olá! Confirmo minha presença na festa da Andressa 🎉
+
+Dia: 29/07/2026 às 19h30
+
+⚠️ Confirmações até o dia 20/07
+
+Por favor, informe:
+✅ Nome completo:
+✅ Se for criança, qual a idade:
+[21:35, 07/07/2026] Silvia Rocha: <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -47,79 +65,79 @@
             to { opacity: 1; }
         }
 
-        /* Contagem Regressiva */
+        /* 📅 Contagem Regressiva - POSIÇÃO EXATA, não atrapalha mais */
         .contagem {
             position: absolute;
-            top: 65%;
+            top: 68%;
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
             color: #ffdd00;
             z-index: 999;
-            background: rgba(0,0,0,0.7);
-            padding: 6px 16px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 220, 0, 0.5);
+            background: rgba(0,0,0,0.85);
+            padding: 4px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 220, 0, 0.6);
+            min-width: 110px;
         }
 
         .contagem .titulo {
-            font-size: 13px;
+            font-size: 12px;
             margin-bottom: 2px;
+            line-height: 1.2;
         }
 
         .contagem .numeros {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: bold;
+            text-shadow: 0 0 8px rgba(255,220,0,0.8);
         }
 
-        /* Botão Como Chegar */
+        /* 📍 Botão Como Chegar */
         .link-mapa {
             position: absolute;
-            top: 58%;
-            right: 5%;
-            width: 20%;
-            height: 8%;
+            top: 62%;
+            right: 4%;
+            width: 22%;
+            height: 10%;
             cursor: pointer;
             z-index: 999;
         }
 
-        /* Botão Confirmar Presença */
+        /* ❤️ Botão Confirmar Presença */
         .link-whatsapp {
             position: absolute;
-            bottom: 14%;
+            top: 75%;
             left: 50%;
             transform: translateX(-50%);
             width: 88%;
-            height: 9%;
+            height: 12%;
             cursor: pointer;
             z-index: 999;
         }
 
-        /* Botão Ver Fotos */
+        /* 📸 Botão Ver Fotos */
         .botao-album {
             position: absolute;
-            bottom: 5%;
+            bottom: 4%;
             left: 50%;
             transform: translateX(-50%);
-            width: 75%;
+            width: 80%;
             height: 6%;
             border: none;
             background: transparent;
-            color: #ffd700;
-            font-size: 15px;
-            font-weight: bold;
             cursor: pointer;
             z-index: 999;
         }
 
-        /* Galeria de Fotos */
+        /* 🖼️ Galeria de Fotos */
         .galeria {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.96);
+            background: rgba(0,0,0,0.97);
             z-index: 2000;
             padding: 25px 15px;
             overflow-y: auto;
@@ -151,6 +169,7 @@
             color: #ffddff;
             font-size: 22px;
             margin: 25px 0;
+            text-shadow: 0 0 10px rgba(255,20,255,0.6);
         }
 
         .grade-fotos {
@@ -164,11 +183,13 @@
         .grade-fotos img {
             width: 100%;
             border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 12px rgba(255,20,255,0.3);
             object-fit: cover;
             aspect-ratio: 1/1;
         }
 
-        /* Áudio */
+        /* 🎵 Áudio */
         #musica {
             position: fixed;
             top: -9999px;
@@ -182,7 +203,7 @@
     <div class="convite" id="tela">
         <div class="aviso-musica">🎵 Toque em qualquer lugar para ouvir a música</div>
 
-        <!-- Contagem -->
+        <!-- Contagem Regressiva -->
         <div class="contagem">
             <div class="titulo">FALTAM</div>
             <div class="numeros" id="contador"></div>
@@ -206,7 +227,7 @@
         ></a>
 
         <!-- Botão Fotos -->
-        <button class="botao-album" onclick="abrirGaleria()">📸 Ver fotos da Andressa</button>
+        <button class="botao-album" onclick="abrirGaleria()"></button>
 
         <!-- Galeria -->
         <div class="galeria" id="galeriaFotos">
@@ -237,7 +258,7 @@
         const aviso = document.querySelector(".aviso-musica");
         const galeria = document.getElementById("galeriaFotos");
 
-        // Contagem Regressiva
+        // 📅 Contagem Regressiva FUNCIONANDO
         function atualizarContagem() {
             const dataFesta = new Date("2026-07-29T19:30:00-03:00");
             const agora = new Date();
@@ -261,7 +282,7 @@
         atualizarContagem();
         setInterval(atualizarContagem, 60000);
 
-        // Iniciar Música
+        // 🎵 Música corrigida
         function iniciarMusica() {
             if (!tocou) {
                 audio.play()
@@ -270,14 +291,15 @@
                         aviso.style.opacity = "0";
                         setTimeout(() => aviso.style.display = "none", 600);
                     })
-                    .catch(err => console.log("Música aguardando clique:", err));
+                    .catch(err => console.log("Música aguardando interação:", err));
             }
         }
 
-        // Galeria
+        // 📸 Galeria funcionando
         function abrirGaleria() {
             galeria.classList.add("aberta");
             document.body.style.overflow = "hidden";
+            iniciarMusica();
         }
 
         function fecharGaleria() {
@@ -285,8 +307,9 @@
             document.body.style.overflow = "auto";
         }
 
-        document.addEventListener("touchstart", iniciarMusica);
-        document.addEventListener("click", iniciarMusica);
+        // Ativa música em qualquer toque/clique
+        document.addEventListener("touchstart", iniciarMusica, { once: false });
+        document.addEventListener("click", iniciarMusica, { once: false });
     </script>
 </body>
 </html>
