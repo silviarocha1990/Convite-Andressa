@@ -9,7 +9,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
         html, body {
@@ -19,19 +18,12 @@
             background: #000;
         }
 
-        /* Fundo do convite */
         .convite {
             width: 100vw;
             height: 100vh;
             background: url("capa.png") center / contain no-repeat;
             background-color: #000;
             position: relative;
-            animation: aparecer 1s ease-out;
-        }
-
-        @keyframes aparecer {
-            from { opacity: 0; transform: scale(1.03); }
-            to { opacity: 1; transform: scale(1); }
         }
 
         /* Aviso de música */
@@ -42,14 +34,12 @@
             transform: translateX(-50%);
             background: rgba(0,0,0,0.75);
             color: #fff;
-            padding: 7px 18px;
+            padding: 8px 20px;
             border-radius: 25px;
             font-size: 14px;
             z-index: 1000;
-            opacity: 0.85;
             animation: piscar 2.5s infinite alternate;
             pointer-events: none;
-            box-shadow: 0 0 12px rgba(255,255,255,0.3);
         }
 
         @keyframes piscar {
@@ -57,109 +47,68 @@
             to { opacity: 1; }
         }
 
-        /* 📅 Contagem Regressiva */
+        /* Contagem Regressiva */
         .contagem {
             position: absolute;
-            top: 66%;
+            top: 65%;
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
             color: #ffdd00;
             z-index: 999;
-            background: rgba(0,0,0,0.65);
-            padding: 6px 18px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 220, 0, 0.4);
-            box-shadow: 0 0 15px rgba(255, 220, 0, 0.3);
+            background: rgba(0,0,0,0.7);
+            padding: 6px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 220, 0, 0.5);
         }
 
         .contagem .titulo {
-            font-size: 14px;
-            margin-bottom: 3px;
-            opacity: 0.9;
+            font-size: 13px;
+            margin-bottom: 2px;
         }
 
         .contagem .numeros {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
-            text-shadow: 0 0 12px rgba(255, 220, 0, 0.7);
         }
 
-        /* Botão COMO CHEGAR */
-        .link-mapa {
+        /* Botão Confirmar Presença */
+        .link-whatsapp {
             position: absolute;
-            top: 57%;
-            right: 4%;
-            width: 22%;
+            bottom: 14%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 88%;
             height: 9%;
             cursor: pointer;
             z-index: 999;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.02);
-            transition: all 0.3s ease;
         }
 
-        .link-mapa:hover, .link-mapa:active {
-            background: rgba(255,255,255,0.12);
-            box-shadow: 0 0 22px rgba(255, 255, 255, 0.35);
-            transform: scale(1.04);
-        }
-
-        /* Botão CONFIRMAR PRESENÇA */
-        .link-whatsapp {
+        /* Botão Ver Fotos */
+        .botao-album {
             position: absolute;
             bottom: 5%;
             left: 50%;
             transform: translateX(-50%);
-            width: 92%;
-            height: 11%;
-            cursor: pointer;
-            z-index: 999;
-            border-radius: 12px;
-            background: rgba(255, 20, 255, 0.03);
-            transition: all 0.3s ease;
-        }
-
-        .link-whatsapp:hover, .link-whatsapp:active {
-            background: rgba(255, 20, 255, 0.15);
-            box-shadow: 0 0 28px rgba(255, 20, 255, 0.4);
-            transform: translateX(-50%) scale(1.02);
-        }
-
-        /* Botão ÁLBUM DE FOTOS */
-        .botao-album {
-            position: absolute;
-            top: 78%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 65%;
-            height: 7%;
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.4);
+            width: 75%;
+            height: 6%;
+            border: none;
+            background: transparent;
             color: #ffd700;
             font-size: 15px;
             font-weight: bold;
-            border-radius: 10px;
             cursor: pointer;
             z-index: 999;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
         }
 
-        .botao-album:hover {
-            background: rgba(255, 215, 0, 0.2);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-            transform: translateX(-50%) scale(1.03);
-        }
-
-        /* Janela da Galeria */
+        /* Galeria de Fotos */
         .galeria {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.94);
+            background: rgba(0,0,0,0.96);
             z-index: 2000;
             padding: 25px 15px;
             overflow-y: auto;
@@ -168,12 +117,6 @@
 
         .galeria.aberta {
             display: block;
-            animation: aparecerGaleria 0.4s ease;
-        }
-
-        @keyframes aparecerGaleria {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
         }
 
         .fechar-galeria {
@@ -189,7 +132,6 @@
             font-size: 24px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(255,34,136,0.5);
             z-index: 2100;
         }
 
@@ -197,8 +139,7 @@
             text-align: center;
             color: #ffddff;
             font-size: 22px;
-            margin: 20px 0 25px;
-            text-shadow: 0 0 10px rgba(255,20,255,0.6);
+            margin: 25px 0;
         }
 
         .grade-fotos {
@@ -212,20 +153,11 @@
         .grade-fotos img {
             width: 100%;
             border-radius: 10px;
-            border: 2px solid rgba(255,255,255,0.2);
-            box-shadow: 0 0 12px rgba(255,20,255,0.3);
-            transition: transform 0.3s ease;
             object-fit: cover;
             aspect-ratio: 1/1;
         }
 
-        .grade-fotos img:hover {
-            transform: scale(1.06);
-            border-color: #ffd700;
-            box-shadow: 0 0 20px rgba(255,215,0,0.5);
-        }
-
-        /* Música invisível */
+        /* Áudio */
         #musica {
             position: fixed;
             top: -9999px;
@@ -239,14 +171,14 @@
     <div class="convite" id="tela">
         <div class="aviso-musica">🎵 Toque em qualquer lugar para ouvir a música</div>
 
-        <!-- Contagem Regressiva -->
+        <!-- Contagem -->
         <div class="contagem">
             <div class="titulo">FALTAM</div>
             <div class="numeros" id="contador"></div>
             <div class="titulo">PARA A FESTA!</div>
         </div>
 
-        <!-- Botão Como Chegar -->
+        <!-- Botão Mapa -->
         <a 
             href="https://www.google.com/maps?q=Buffet+Tik+%26+Tok+Maia,+Av.+Papa+Jo%C3%A3o+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP,+07114-100" 
             target="_blank" 
@@ -254,7 +186,7 @@
             onclick="iniciarMusica()"
         ></a>
 
-        <!-- Botão Confirmar Presença -->
+        <!-- Botão WhatsApp -->
         <a 
             href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa 🎉%0A%0ADia: 29/07/2026 às 19h30%0A%0A⚠️ Confirmações até o dia 20/07%0A%0APor favor, informe:%0A✅ Nome completo:%0A✅ Se for criança, qual a idade:" 
             target="_blank" 
@@ -262,10 +194,10 @@
             onclick="iniciarMusica()"
         ></a>
 
-        <!-- Botão para abrir álbum -->
+        <!-- Botão Fotos -->
         <button class="botao-album" onclick="abrirGaleria()">📸 Ver fotos da Andressa</button>
 
-        <!-- Galeria com as 9 fotos -->
+        <!-- Galeria -->
         <div class="galeria" id="galeriaFotos">
             <button class="fechar-galeria" onclick="fecharGaleria()">&times;</button>
             <h2 class="titulo-galeria">Momentos da Andressa 💖</h2>
@@ -282,7 +214,7 @@
             </div>
         </div>
 
-        <!-- Música -->
+        <!-- Áudio -->
         <audio id="musica" loop preload="auto">
             <source src="festa.mp3" type="audio/mpeg">
         
@@ -294,12 +226,14 @@
         const aviso = document.querySelector(".aviso-musica");
         const galeria = document.getElementById("galeriaFotos");
 
-        // Função da contagem regressiva
+        // Contagem Regressiva
         function atualizarContagem() {
             const dataFesta = new Date("2026-07-29T19:30:00-03:00");
             const agora = new Date();
             const diferenca = dataFesta - agora;
             const elemento = document.getElementById("contador");
+
+            if (!elemento) return;
 
             if (diferenca <= 0) {
                 elemento.textContent = "É HOJE! 🎉";
@@ -316,21 +250,20 @@
         atualizarContagem();
         setInterval(atualizarContagem, 60000);
 
-        // Função para iniciar a música
+        // Iniciar Música
         function iniciarMusica() {
             if (!tocou) {
                 audio.play()
                     .then(() => {
                         tocou = true;
-                        aviso.style.transition = "opacity 0.6s ease";
                         aviso.style.opacity = "0";
                         setTimeout(() => aviso.style.display = "none", 600);
                     })
-                    .catch(() => {});
+                    .catch(err => console.log("Música aguardando clique:", err));
             }
         }
 
-        // Abrir e fechar galeria
+        // Galeria
         function abrirGaleria() {
             galeria.classList.add("aberta");
             document.body.style.overflow = "hidden";
@@ -338,6 +271,7 @@
 
         function fecharGaleria() {
             galeria.classList.remove("aberta");
+            document.body.style.overflow = "auto";
         }
 
         document.addEventListener("touchstart", iniciarMusica);
