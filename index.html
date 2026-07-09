@@ -23,34 +23,39 @@
             top: 15px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.8);
             color: #fff;
-            padding: 8px 18px;
+            padding: 8px 16px;
             border-radius: 20px;
             font-size: 14px;
-            z-index: 1000;
+            z-index: 10000;
             pointer-events: none;
         }
-        /* Botão Mapa */
+
+        /* Botões com prioridade ABSOLUTA */
         .botao-mapa {
             position: absolute;
             top: 62%;
             right: 4%;
             width: 22%;
             height: 9%;
+            z-index: 99999;
             cursor: pointer;
-            z-index: 999;
+            background: transparent;
+            border: none;
         }
-        /* Botão Confirmar Presença - ajustado para funcionar perfeitamente */
+
         .botao-confirmar {
             position: absolute;
             bottom: 12%;
             left: 50%;
             transform: translateX(-50%);
-            width: 85%;
-            height: 8%;
+            width: 88%;
+            height: 10%;
+            z-index: 99999;
             cursor: pointer;
-            z-index: 999;
+            background: transparent;
+            border: none;
         }
     </style>
 </head>
@@ -58,43 +63,40 @@
     <div class="convite">
         <div class="aviso">🎵 Toque em qualquer lugar para ouvir a música</div>
 
-        <!-- Link Mapa -->
-        <a href="https://www.google.com/maps?q=Buffet+Tik+%26+Tok+Maia,+Av.+Papa+João+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP,+07114-100" target="_blank" class="botao-mapa"></a>
+        <!-- Mapa -->
+        <a href="https://wa.me/5511979567755?text=Endereço%20do%20Buffet:%20Av.%20Papa%20João%20XXIII,%2064%20-%20Parque%20Renato%20Maia,%20Guarulhos%20-%20SP" target="_blank" class="botao-mapa"></a>
 
-        <!-- Link Confirmar Presença com mensagem exata -->
+        <!-- Confirmar Presença - MENSAGEM EXATA -->
         <a href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa 🎉%0A%0ADia: 29/07/2026 às 19h30%0A%0A⚠️ Confirmações até o dia 20/07%0A👉 Caso não consiga comparecer, pedimos que avise também.%0A%0APor favor, informe:%0A✅ Nome completo:%0A✅ Se for criança, qual a idade:" target="_blank" class="botao-confirmar"></a>
 
-        <!-- Música já funcionando -->
-        <audio id="musica" loop preload="auto" style="display: none;">
+        <!-- Música - ativada SEM interferir nos botões -->
+        <audio id="musica" loop preload="auto" style="position: fixed; top: -9999px; left: -9999px;">
             <source src="festa.mp3" type="audio/mpeg">
             <source src="mundo.mp3" type="audio/mpeg">
             <source src="musica.mp3" type="audio/mpeg">
-            <source src="musica.mpeg" type="audio/mpeg">
         
     </div>
 
     <script>
-        let jaTocou = false;
-        const audio = document.getElementById("musica");
-        const aviso = document.querySelector(".aviso");
+        let iniciou = false;
+        const musica = document.getElementById("musica");
 
-        function iniciarMusica() {
-            if (!jaTocou) {
-                audio.load();
-                audio.play()
-                    .then(() => {
-                        jaTocou = true;
-                        aviso.style.opacity = "0";
-                        setTimeout(() => aviso.style.display = "none", 500);
-                    })
-                    .catch(() => {
-                        aviso.textContent = "Toque novamente para ouvir a música";
-                    });
+        // Toca a música apenas se NÃO estiver clicando em um botão
+        document.addEventListener("click", function(e) {
+            if (!iniciou && !e.target.classList.contains("botao-mapa") && !e.target.classList.contains("botao-confirmar")) {
+                musica.play().catch(() => {});
+                iniciou = true;
+                document.querySelector(".aviso").style.opacity = "0";
             }
-        }
+        });
 
-        document.addEventListener("click", iniciarMusica);
-        document.addEventListener("touchstart", iniciarMusica);
+        document.addEventListener("touchstart", function(e) {
+            if (!iniciou && !e.target.classList.contains("botao-mapa") && !e.target.classList.contains("botao-confirmar")) {
+                musica.play().catch(() => {});
+                iniciou = true;
+                document.querySelector(".aviso").style.opacity = "0";
+            }
+        });
     </script>
 </body>
 </html>
