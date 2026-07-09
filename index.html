@@ -3,67 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convite Andressa</title>
+    <title>Convite • Aniversário da Andressa</title>
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { background:#000; font-family:Arial, sans-serif; }
-        .convite { width:100vw; height:100vh; background:url("capa.png") center/contain no-repeat; position:relative; }
-        .aviso-musica { position:fixed; top:10px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.8); color:#fff; padding:6px 15px; border-radius:20px; font-size:14px; z-index:1000; }
-        .contagem { position:absolute; top:67%; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.8); color:#ffdd00; padding:4px 10px; border-radius:5px; text-align:center; z-index:999; }
-        .link-mapa { position:absolute; top:62%; right:5%; width:20%; height:9%; cursor:pointer; z-index:999; }
-        .link-confirmar { position:absolute; bottom:12%; left:50%; transform:translateX(-50%); width:85%; height:8%; cursor:pointer; z-index:999; }
-        .botao-fotos { position:absolute; top:62%; left:50%; transform:translateX(-50%); width:20%; height:9%; cursor:pointer; z-index:999; }
-        .galeria { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.95); z-index:2000; padding:30px 15px; display:none; overflow-y:auto; }
-        .galeria.aberta { display:block; }
-        .fechar { position:fixed; top:15px; right:20px; background:#ff2288; color:white; border:none; width:40px; height:40px; border-radius:50%; font-size:22px; cursor:pointer; }
-        .grade { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; max-width:700px; margin:20px auto; }
-        .grade img { width:100%; border-radius:8px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; background: #000; font-family: Arial, sans-serif; overflow: hidden; }
+
+        .convite {
+            width: 100vw;
+            height: 100vh;
+            background: url("capa.png") center / contain no-repeat;
+            background-color: #000;
+            position: relative;
+        }
+
+        .aviso-musica {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.85);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            z-index: 1000;
+            animation: piscar 2s infinite alternate;
+        }
+        @keyframes piscar { from {opacity: 0.6;} to {opacity: 1;} }
+
+        .contagem {
+            position: absolute;
+            top: 68%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.85);
+            color: #ffdd00;
+            padding: 5px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,220,0,0.6);
+            text-align: center;
+            z-index: 999;
+        }
+        .contagem .titulo { font-size: 12px; margin-bottom: 2px; }
+        .contagem .numeros { font-size: 18px; font-weight: bold; }
+
+        .link-mapa {
+            position: absolute;
+            top: 62%;
+            right: 5%;
+            width: 20%;
+            height: 9%;
+            cursor: pointer;
+            z-index: 999;
+        }
+        .link-confirmar {
+            position: absolute;
+            bottom: 12%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            height: 8%;
+            cursor: pointer;
+            z-index: 999;
+        }
+        .botao-fotos {
+            position: absolute;
+            top: 62%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20%;
+            height: 9%;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        .galeria {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.97);
+            z-index: 2000;
+            padding: 30px 15px;
+            overflow-y: auto;
+            display: none;
+        }
+        .galeria.aberta { display: block; }
+        .fechar-galeria {
+            position: fixed;
+            top: 15px; right: 20px;
+            background: #ff2288;
+            border: none; color: white;
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            font-size: 24px; font-weight: bold;
+            cursor: pointer;
+            z-index: 2100;
+        }
+        .titulo-galeria {
+            text-align: center;
+            color: #ffddff;
+            font-size: 22px;
+            margin: 20px 0;
+        }
+        .grade-fotos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .grade-fotos img {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+            aspect-ratio: 1/1;
+            border: 2px solid #fff3;
+        }
+
+        #musica {
+            position: fixed;
+            top: -9999px; left: -9999px;
+            opacity: 0; pointer-events: none;
+        }
     </style>
 </head>
 <body>
-    <div class="convite" onclick="tocarMusica()">
-        <div class="aviso-musica">🎵 Toque para ouvir a música</div>
+    <div class="convite" onclick="iniciarMusica()">
+        <div class="aviso-musica">🎵 Toque em qualquer lugar para ouvir a música</div>
+
         <div class="contagem">
-            <div>FALTAM</div>
-            <div id="contador" style="font-size:18px; font-weight:bold;"></div>
-            <div>PARA A FESTA!</div>
+            <div class="titulo">FALTAM</div>
+            <div class="numeros" id="contador"></div>
+            <div class="titulo">PARA A FESTA!</div>
         </div>
-        <a href="https://www.google.com/maps?q=Buffet+Tik+%26+Tok+Maia,+Av.+Papa+João+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP" target="_blank" class="link-mapa"></a>
-        <a href="https://wa.me/5511979567755?text=Olá! Confirmo presença na festa da Andressa 🎉%0ADia:29/07/2026 às 19h30" target="_blank" class="link-confirmar"></a>
+
+        <a href="https://www.google.com/maps?q=Buffet+Tik+%26+Tok+Maia,+Av.+Papa+João+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP,+07114-100" target="_blank" class="link-mapa"></a>
+
+        <a href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa 🎉%0A%0ADia: 29/07/2026 às 19h30%0A%0AConfirmações até 20/07%0A%0ANome completo:%0AIdade (se criança):" target="_blank" class="link-confirmar"></a>
+
         <button class="botao-fotos" onclick="abrirGaleria()"></button>
-        <div class="galeria" id="galeria">
-            <button class="fechar" onclick="fecharGaleria()">&times;</button>
-            <h2 style="color:#fff; text-align:center;">Momentos da Andressa 💖</h2>
-            <div class="grade">
-                <img src="foto1.jpg">
-                <img src="foto2.jpg">
-                <img src="foto3.jpg">
-                <img src="foto4.jpg">
-                <img src="foto5.jpg">
-                <img src="foto6.jpg">
-                <img src="foto7.jpg">
-                <img src="foto8.jpg">
-                <img src="foto9.jpg">
+
+        <div class="galeria" id="galeriaFotos">
+            <button class="fechar-galeria" onclick="fecharGaleria()">&times;</button>
+            <h2 class="titulo-galeria">Momentos da Andressa 💖</h2>
+            <div class="grade-fotos">
+                <img src="foto1.jpg" alt="Foto 1">
+                <img src="foto2.jpg" alt="Foto 2">
+                <img src="foto3.jpg" alt="Foto 3">
+                <img src="foto4.jpg" alt="Foto 4">
+                <img src="foto5.jpg" alt="Foto 5">
+                <img src="foto6.jpg" alt="Foto 6">
+                <img src="foto7.jpg" alt="Foto 7">
+                <img src="foto8.jpg" alt="Foto 8">
+                <img src="foto9.jpg" alt="Foto 9">
             </div>
         </div>
-        <audio id="musica" src="festa.mp3" loop preload="auto">
+
+        <audio id="musica" loop preload="auto">
+            <source src="festa.mp3" type="audio/mpeg">
+        
     </div>
+
     <script>
-        function atualizarContagem() {
-            const festa = new Date("2026-07-29T19:30:00-03:00");
-            const agora = new Date();
-            const diff = festa - agora;
-            if (diff <= 0) { document.getElementById("contador").textContent = "É HOJE! 🎉"; return; }
-            const d = Math.floor(diff / 86400000);
-            const h = Math.floor((diff % 86400000) / 3600000);
-            const m = Math.floor((diff % 3600000) / 60000);
-            document.getElementById("contador").textContent = ${d}d ${h}h ${m}m;
-        }
-        atualizarContagem(); setInterval(atualizarContagem, 60000);
         let tocou = false;
-        function tocarMusica() { if (!tocou) { document.getElementById("musica").play().catch(e=>{}); tocou = true; document.querySelector(".aviso-musica").style.display = "none"; } }
-        function abrirGaleria() { document.getElementById("galeria").classList.add("aberta"); tocarMusica(); }
-        function fecharGaleria() { document.getElementById("galeria").classList.remove("aberta"); }
+        const audio = document.getElementById("musica");
+        const galeria = document.getElementById("galeriaFotos");
+        const aviso = document.querySelector(".aviso-musica");
+
+        // Contagem regressiva
+        function atualizarContagem() {
+            const dataFesta = new Date("2026-07-29T19:30:00-03:00");
+            const agora = new Date();
+            const diff = dataFesta - agora;
+            const el = document.getElementById("contador");
+            if (!el) return;
+
+            if (diff <= 0) {
+                el.textContent = "É HOJE! 🎉";
+                return;
+            }
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            el.textContent = ${dias}d ${horas}h ${minutos}m;
+        }
+        atualizarContagem();
+        setInterval(atualizarContagem, 60000);
+
+        // Iniciar música
+        function iniciarMusica() {
+            if (!tocou) {
+                audio.play()
+                    .then(() => {
+                        tocou = true;
+                        aviso.style.opacity = "0";
+                        setTimeout(() => aviso.style.display = "none", 600);
+                    })
+                    .catch(err => console.log("Aguardando clique:", err));
+            }
+        }
+
+        // Abrir e fechar galeria
+        function abrirGaleria() {
+            galeria.classList.add("aberta");
+            iniciarMusica();
+        }
+        function fecharGaleria() {
+            galeria.classList.remove("aberta");
+        }
+
+        document.addEventListener("click", iniciarMusica);
+        document.addEventListener("touchstart", iniciarMusica);
     </script>
 </body>
 </html>
