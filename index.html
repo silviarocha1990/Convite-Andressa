@@ -31,7 +31,6 @@
             z-index: 1000;
             pointer-events: none;
         }
-        /* Áreas clicáveis com tamanho e caminho corretos */
         .botao-mapa {
             position: absolute;
             top: 62%;
@@ -57,16 +56,14 @@
     <div class="convite">
         <div class="aviso">🎵 Toque em qualquer lugar para ouvir a música</div>
 
-        <!-- Botão Mapa -->
         <a href="https://www.google.com/maps?q=Buffet+Tik+%26+Tok+Maia,+Av.+Papa+João+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP,+07114-100" target="_blank" class="botao-mapa"></a>
 
-        <!-- Botão Confirmar Presença -->
-        <a href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa 🎉%0ADia: 29/07/2026 às 19h30%0AConfirmações até 20/07%0ANome completo:%0AIdade (se for criança):" target="_blank" class="botao-confirmar"></a>
+        <a href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa 🎉%0A%0ADia: 29/07/2026 às 19h30%0A%0A⚠️ Confirmações até o dia 20/07%0A👉 Caso não consiga comparecer, pedimos que avise também.%0A%0APor favor, informe:%0A✅ Nome completo:%0A✅ Se for criança, qual a idade:" target="_blank" class="botao-confirmar"></a>
 
-        <!-- Música com todos os arquivos que você tem -->
         <audio id="musica" loop preload="auto" style="display: none;">
             <source src="festa.mp3" type="audio/mpeg">
             <source src="mundo.mp3" type="audio/mpeg">
+            <source src="musica.mp3" type="audio/mpeg">
             <source src="musica.mpeg" type="audio/mpeg">
         
     </div>
@@ -76,16 +73,18 @@
         const audio = document.getElementById("musica");
         const aviso = document.querySelector(".aviso");
 
-        // Tocar música ao clicar ou tocar na tela
         function iniciarMusica() {
             if (!jaTocou) {
+                audio.load();
                 audio.play()
                     .then(() => {
                         jaTocou = true;
                         aviso.style.opacity = "0";
                         setTimeout(() => aviso.style.display = "none", 500);
                     })
-                    .catch(erro => console.log("Aguardando interação:", erro));
+                    .catch(() => {
+                        aviso.textContent = "Toque novamente para iniciar a música";
+                    });
             }
         }
 
