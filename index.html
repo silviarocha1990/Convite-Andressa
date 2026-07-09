@@ -31,6 +31,7 @@
             z-index: 1000;
             pointer-events: none;
         }
+        /* Botão Mapa */
         .botao-mapa {
             position: absolute;
             top: 62%;
@@ -40,6 +41,7 @@
             cursor: pointer;
             z-index: 999;
         }
+        /* Botão Confirmar Presença - ajustado para funcionar perfeitamente */
         .botao-confirmar {
             position: absolute;
             bottom: 12%;
@@ -56,10 +58,13 @@
     <div class="convite">
         <div class="aviso">🎵 Toque em qualquer lugar para ouvir a música</div>
 
+        <!-- Link Mapa -->
         <a href="https://www.google.com/maps?q=Buffet+Tik+%26+Tok+Maia,+Av.+Papa+João+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP,+07114-100" target="_blank" class="botao-mapa"></a>
 
+        <!-- Link Confirmar Presença com mensagem exata -->
         <a href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa 🎉%0A%0ADia: 29/07/2026 às 19h30%0A%0A⚠️ Confirmações até o dia 20/07%0A👉 Caso não consiga comparecer, pedimos que avise também.%0A%0APor favor, informe:%0A✅ Nome completo:%0A✅ Se for criança, qual a idade:" target="_blank" class="botao-confirmar"></a>
 
+        <!-- Música já funcionando -->
         <audio id="musica" loop preload="auto" style="display: none;">
             <source src="festa.mp3" type="audio/mpeg">
             <source src="mundo.mp3" type="audio/mpeg">
@@ -83,7 +88,7 @@
                         setTimeout(() => aviso.style.display = "none", 500);
                     })
                     .catch(() => {
-                        aviso.textContent = "Toque novamente para iniciar a música";
+                        aviso.textContent = "Toque novamente para ouvir a música";
                     });
             }
         }
