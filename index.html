@@ -32,7 +32,7 @@
             pointer-events: none;
         }
 
-        /* Botões com prioridade ABSOLUTA */
+        /* Botões */
         .botao-mapa {
             position: absolute;
             top: 62%;
@@ -63,13 +63,13 @@
     <div class="convite">
         <div class="aviso">🎵 Toque em qualquer lugar para ouvir a música</div>
 
-        <!-- Mapa -->
-        <a href="https://wa.me/5511979567755?text=Endereço%20do%20Buffet:%20Av.%20Papa%20João%20XXIII,%2064%20-%20Parque%20Renato%20Maia,%20Guarulhos%20-%20SP" target="_blank" class="botao-mapa"></a>
+        <!-- Botão Mapa continua igual -->
+        <a href="https://www.google.com/maps?q=Buffet+Tik+%26+Tok+Maia,+Av.+Papa+João+XXIII,+64+-+Parque+Renato+Maia,+Guarulhos+-+SP,+07114-100" target="_blank" class="botao-mapa"></a>
 
-        <!-- Confirmar Presença - MENSAGEM EXATA -->
-        <a href="https://wa.me/5511979567755?text=Olá! Confirmo minha presença na festa da Andressa 🎉%0A%0ADia: 29/07/2026 às 19h30%0A%0A⚠️ Confirmações até o dia 20/07%0A👉 Caso não consiga comparecer, pedimos que avise também.%0A%0APor favor, informe:%0A✅ Nome completo:%0A✅ Se for criança, qual a idade:" target="_blank" class="botao-confirmar"></a>
+        <!-- Botão Confirmar Presença → agora aponta para o seu formulário -->
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAYAAJqHeslUNVI3VEE4OUJFTkZINFFQMDRMVzVHMVVVWi4u" target="_blank" class="botao-confirmar"></a>
 
-        <!-- Música - ativada SEM interferir nos botões -->
+        <!-- Música continua funcionando -->
         <audio id="musica" loop preload="auto" style="position: fixed; top: -9999px; left: -9999px;">
             <source src="festa.mp3" type="audio/mpeg">
             <source src="mundo.mp3" type="audio/mpeg">
@@ -81,7 +81,6 @@
         let iniciou = false;
         const musica = document.getElementById("musica");
 
-        // Toca a música apenas se NÃO estiver clicando em um botão
         document.addEventListener("click", function(e) {
             if (!iniciou && !e.target.classList.contains("botao-mapa") && !e.target.classList.contains("botao-confirmar")) {
                 musica.play().catch(() => {});
